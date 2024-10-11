@@ -1,1 +1,148 @@
-!!!
+--==-- pgUId: Pygame User Interface Designer --==--
+
+pgUId stands for Pygame User Interface Designer. This library simplifies the creation of user interfaces (UI) in Pygame, 
+particularly for elements like main menus. It draws inspiration from Tkinter, which is commonly used for building applications 
+in Python.
+
+---------------------------------------------------------
+
+INSTALLATION GUIDE
+Before using pgUId, make sure you have the following dependencies installed:
+
+    - Pygame version 1.9.1 or higher
+    - Requests (latest version)
+
+
+To install pgUId, use the following pip command:
+
+    `pip install pguid`
+
+---------------------------------------------------------
+
+CORE CONCEPTS
+
+- Displays -
+In pgUId, "displays" are essentially screens where you can place graphical UI elements like buttons and labels. 
+You can create multiple displays as needed. To create a new display, use the following method:
+
+    `display = pgUId.UIDisplay()`
+
+When creating a display, you can provide up to 5 optional arguments to customize its behavior:
+
+    - scrollable (default: False)
+        Adds a scroll bar, allowing the user to navigate through large sets of elements using the mouse.
+
+    - stacked (default: False)
+        Automatically arranges elements vertically, so you only need to specify the x-position.
+
+    - fill (default: 'white')
+        Defines the background color of the display.
+
+    - x (default: 0)
+        Sets the x-position of the display on the screen.
+
+    - y (default: 0)
+        Sets the y-position of the display on the screen.
+
+Example usage:
+
+    `display = pgUId.UIDisplay(scrollable=True, stacked=True, fill="white", x=0, y=0)`
+
+---------------------------------------------------------
+
+ELEMENTS
+
+pgUId includes various UI elements that can be added to a display. Currently, the available elements are Labels and Buttons.
+After creating an element, it must be "packed" (i.e., added) to a specific display using the pack() method.
+
+- Label -
+A Label displays static text. Here's how you create and pack a label:
+
+    `label = pgUId.element.Label(text="Hello World")`
+    `label.pack(display)`
+
+- Button -
+A Button is an interactive element that can execute a function when clicked. Here’s how to create and pack a button:
+
+    `button = pgUId.element.Button(function=lambda: print("Hello World"), text="Click Me!")`
+    `button.pack(display)`
+
+- Element Properties -
+Both Labels and Buttons share several common properties that can be customized:
+
+    - x (default: 0)
+        Sets the x-position relative to the display's position.
+
+    - y (default: 0)
+        Sets the y-position relative to the display's position.
+
+    - font (default: 'Arial')
+        Specifies the font family for the text.
+
+    - font_size (default: 24)
+        Sets the font size.
+
+    - color (default: 'black')
+        Sets the font color.
+
+- Button-Specific Properties -
+Buttons have additional unique properties:
+
+    - bg (default: None)
+        Sets the background color.
+
+    - hc (default: None)
+        Sets the hover color, which appears when the button is hovered over with the mouse.
+
+    - text (default: None)
+        Defines the text displayed on the button.
+
+    - width (default: None)
+        Specifies the button's width.
+
+    - height (default: None)
+        Specifies the button's height.
+
+    - texture (default: None)
+        Sets the image texture of the button when it's not clicked.
+
+    - clicked_texture (default: None)
+        Sets the image texture of the button when it is clicked.
+        *Note: If a texture is used, both texture and clicked_texture must be defined.*
+
+---------------------------------------------------------
+
+MODIFYING ELEMENT PROPERTIES
+
+In addition to setting properties when you create a UI element, you can modify any of its properties dynamically while your
+Pygame application is running. Each UI element in pgUId comes with a config() method, which allows you to update its properties 
+at any time.
+
+    `label.config(ARGUMENTS)`
+
+Where ARGUMENTS can be one or more of the element's properties that you want to change.
+
+- Example Usage -
+Suppose you have a label element:
+
+    `label = pgUId.element.Label(text="Hello, World", color='white')`
+    `label.pack(display)`
+
+You can modify its properties after it has been created using the config() method:
+
+    `# Change the text and color of the label`
+    `label.config(text="New Text", color='red')`
+
+    `# Modify multiple properties at once`
+    `label.config(text="Updated Text", color='red', font='Times New Roman', font_size=24)`
+
+In the example above:
+
+    The label's text is updated to "Updated Text"
+    The color is changed to red.
+    The font size is set to 24.
+    The font family is set to "Times New Roman"
+
+- Available Arguments -
+
+You can pass any of the arguments to the config() method you used when creating the element.
