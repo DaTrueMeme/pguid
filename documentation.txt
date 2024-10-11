@@ -17,6 +17,11 @@ To install pgUId, use the following pip command:
 
     `pip install pguid`
 
+To get the pgUId documentation, run the following command in a python file:
+
+    `from pguid import pgUId`
+    `pgUId.docs()`
+
 ---------------------------------------------------------
 
 CORE CONCEPTS
